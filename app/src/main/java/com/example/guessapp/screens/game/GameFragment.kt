@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -44,12 +45,19 @@ class GameFragment : Fragment() {
         binding.skipButton.setOnClickListener {
             viewModel.onSkip()
         }
+
         viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
             binding.scoreText.text = newScore.toString()
         })
-//        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
-//            binding.wordText.text = newWord
-//        })
+        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
+            binding.wordText.text = newWord
+        })
+        viewModel.eventGameFinished.observe(viewLifecycleOwner, Observer { hasFinished ->
+            if (hasFinished){
+                gameFinished()
+                viewModel.onGameFinishComplete()
+            }
+        })
         return binding.root
 
     }
@@ -57,9 +65,11 @@ class GameFragment : Fragment() {
      * Called when the game is finished
      */
    private fun gameFinished(){
-       val action=GameFragmentDirections.actionGameFragmentToScoreFragment()
-       // action.setScore(viewModel.score.value ?:0)
-        findNavController(this).navigate(action)
+//       val action=GameFragmentDirections.actionGameFragmentToScoreFragment()
+//        val currentScore=viewModel.score.value?:0
+//        action.setScore(currentScore)
+//        findNavController(this).navigate(action)
+       Toast.makeText(this.activity,"Game has finished",Toast.LENGTH_SHORT).show()
    }
     /**
      * Moves to the next word in the list
