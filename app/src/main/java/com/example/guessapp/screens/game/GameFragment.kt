@@ -14,11 +14,12 @@ import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.guessapp.GameViewModel
 import com.example.guessapp.R
 import com.example.guessapp.databinding.FragmentGameBinding
+import com.example.guessapp.screens.score.ScoreFragment
 
 
 class GameFragment : Fragment() {
 
-    private lateinit var viewModel: ViewModel
+    private lateinit var viewModel: GameViewModel
 
     private lateinit var binding: FragmentGameBinding
 
@@ -36,12 +37,14 @@ class GameFragment : Fragment() {
         viewModel= ViewModelProviders.of(this).get(GameViewModel::class.java)
 
         binding.correctButton.setOnClickListener {
-            (viewModel as GameViewModel).onCorrect()
+            viewModel.onCorrect()
             updateScoreText()
             updateWordText()}
-        binding.skipButton.setOnClickListener { (viewModel as GameViewModel).onSkip()
+        binding.skipButton.setOnClickListener {
+            viewModel.onSkip()
             updateScoreText()
-            updateWordText()}
+            updateWordText()
+        }
         updateScoreText()
         updateWordText()
         return binding.root
@@ -50,11 +53,10 @@ class GameFragment : Fragment() {
     /**
      * Called when the game is finished
      */
-    private fun gameFinished() {
-        val action = GameFragmentDirections.actionGameFragmentToScoreFragment()
+   private fun gameFinished(){
+       val action=GameFragmentDirections.actionGameFragmentToScoreFragment()
         findNavController(this).navigate(action)
-    }
-
+   }
     /**
      * Moves to the next word in the list
      */
