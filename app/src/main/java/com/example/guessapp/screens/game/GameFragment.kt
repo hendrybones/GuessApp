@@ -10,15 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import com.example.guessapp.GameViewModel
 import com.example.guessapp.R
 import com.example.guessapp.databinding.FragmentGameBinding
-import com.example.guessapp.screens.score.ScoreFragment
 
 
 class GameFragment : Fragment() {
