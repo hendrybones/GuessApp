@@ -24,11 +24,11 @@ class ScoreFragment : Fragment() {
     ): View? {
         val binding =DataBindingUtil.inflate<FragmentScoreBinding>(inflater,R.layout.fragment_score,container,false)
 
-        viewModelFactory= ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(arguments).score)
-        viewModel=viewModelProviders.of(this,viewModelFactory)
-            .get(ScoreViewModel ::class.java)
-        binding.scoreText.text=ScoreFragmentArgs.fromBundle(arguments).score.toString()
-        binding.playAgainButton.setOnClickListener { onPlayAgain() }
+//        viewModelFactory= ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(arguments).score)
+//        viewModel=viewModelProviders.of(this,viewModelFactory)
+//            .get(ScoreViewModel ::class.java)
+//        binding.scoreText.text=ScoreFragmentArgs.fromBundle(arguments).score.toString()
+//        binding.playAgainButton.setOnClickListener { onPlayAgain() }
 
 
         // Get args using by navArgs property delegate
